@@ -1,0 +1,37 @@
+{
+    "name": "webext-state-machine",
+    "version": "0.1.0",
+    "description": "Finite state machine for Chrome extensions — typed states, transitions, guards, side effects, and persistence. Zero dependencies.",
+    "author": "Zovo <hello@zovo.one>",
+    "license": "MIT",
+    "keywords": [
+        "chrome-extension",
+        "state-machine",
+        "fsm",
+        "state-management",
+        "transitions",
+        "manifest-v3",
+        "browser-extension",
+        "finite-state"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/theluckystrike/webext-state-machine.git"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "test": "jest",
+        "prepublishOnly": "npm run build"
+    },
+    "devDependencies": {
+        "@types/chrome": "^0.0.260",
+        "typescript": "^5.3.3"
+    }
+}
