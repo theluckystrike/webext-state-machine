@@ -1,24 +1,41 @@
-# webext-state-machine — Finite State Machine for Chrome Extensions
+# webext-state-machine
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+State machine for browser extension components.
 
-> **Built by [Zovo](https://zovo.one)**
+## Overview
 
-**Typed FSM** — states, transitions, guards, side effects, and chrome.storage persistence.
+webext-state-machine provides finite state machine implementation for managing extension state.
 
-## 🚀 Quick Start
-```typescript
-import { StateMachine } from 'webext-state-machine';
-const machine = new StateMachine({
-  initial: 'idle',
-  transitions: [
-    { from: 'idle', event: 'START', to: 'running', action: () => console.log('started!') },
-    { from: 'running', event: 'STOP', to: 'idle' },
-  ],
-  persist: true,
-});
-await machine.send('START');
+## Installation
+
+```bash
+npm install webext-state-machine
 ```
 
-## 📄 License
-MIT — [Zovo](https://zovo.one)
+## Usage
+
+```javascript
+import { StateMachine } from 'webext-state-machine';
+
+const machine = new StateMachine({
+  initial: 'idle',
+  states: {
+    idle: { on: { start: 'running' } },
+    running: { on: { stop: 'idle', complete: 'done' } },
+    done: { on: { reset: 'idle' } }
+  }
+});
+
+machine.start();
+```
+
+## API
+
+- `start()` - Start the machine
+- `stop()` - Stop the machine
+- `transition(event)` - Transition state
+- `getState()` - Get current state
+
+## License
+
+MIT
